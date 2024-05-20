@@ -17,7 +17,7 @@ function App() {
     { id: 5, name: "Laptop", price: "678.00", image: faLaptop },
   ];
   return (
-    <div className="App">
+    <div className="bg-gray-200 flex justify-center items-center h-screen">
       <Swiper showArrowsProp={true}>
         {products.map((product, index) => (
           <ProductForm key={index} product={product} />

@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./swiper.css";
 
 function Swiper({ children }) {
   const [startX, setStartX] = useState(0);
@@ -8,11 +7,9 @@ function Swiper({ children }) {
 
   const swiperRef = useRef(null);
 
-  // Sensitivity factors
   const mouseSensitivity = 0.115;
-  const touchSensitivity = 0.15; // Adjust this value for desired touch sensitivity
+  const touchSensitivity = 0.15;
 
-  // Duplicate the children
   const duplicatedChildren = [...children, ...children];
 
   function handleOnMouseDown(event) {
@@ -50,12 +47,10 @@ function Swiper({ children }) {
     if (!swiperRef.current) return;
     const { scrollLeft, scrollWidth, clientWidth } = swiperRef.current;
 
-    // If scrolled to the end of the first set, jump to the start of the second set
     if (scrollLeft >= scrollWidth / 2) {
       swiperRef.current.scrollLeft = scrollLeft - scrollWidth / 2;
     }
 
-    // If scrolled to the start of the second set, jump to the end of the first set
     if (scrollLeft <= 0) {
       swiperRef.current.scrollLeft = scrollLeft + scrollWidth / 2;
     }
@@ -63,7 +58,6 @@ function Swiper({ children }) {
     setScrollLeft(swiperRef.current.scrollLeft);
   }
 
-  // Initialize the scroll position to the middle
   useEffect(() => {
     if (swiperRef.current) {
       swiperRef.current.scrollLeft = swiperRef.current.scrollWidth / 4;
@@ -99,11 +93,14 @@ function Swiper({ children }) {
           handleOnScroll();
         }}
         ref={swiperRef}
-        className="swiperRootContainer"
+        className="w-[900px] h-[600px] overflow-x-hidden flex items-center rounded-[10px]"
       >
-        <div className="swiperItemsContainer">
+        <div className="flex h-[90%] w-max ml-[9px]">
           {React.Children.map(duplicatedChildren, (child, index) => (
-            <div key={index} className="swiperItem">
+            <div
+              key={index}
+              className="w-[400px] bg-[white] flex items-center justify-center text-3xl m-3 rounded-[10px]"
+            >
               {child}
             </div>
           ))}
