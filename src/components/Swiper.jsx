@@ -10,7 +10,7 @@ function Swiper({ children }) {
 
   // Sensitivity factors
   const mouseSensitivity = 0.115;
-  const touchSensitivity = 0.17; // Adjust this value for desired touch sensitivity
+  const touchSensitivity = 0.15; // Adjust this value for desired touch sensitivity
 
   // Duplicate the children
   const duplicatedChildren = [...children, ...children];
