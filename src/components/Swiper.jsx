@@ -8,6 +8,10 @@ function Swiper({ children }) {
 
   const swiperRef = useRef(null);
 
+  // Sensitivity factors
+  const mouseSensitivity = 0.115;
+  const touchSensitivity = 0.2; // Adjust this value for desired touch sensitivity
+
   // Duplicate the children
   const duplicatedChildren = [...children, ...children];
 
@@ -24,13 +28,13 @@ function Swiper({ children }) {
   function handleOnMouseMove(event) {
     if (!isMouseDown || !swiperRef.current) return;
     event.preventDefault();
-    const deltaX = (event.clientX - startX) * 0.115;
+    const deltaX = (event.clientX - startX) * mouseSensitivity;
     swiperRef.current.scrollLeft = scrollLeft - deltaX;
   }
 
   function handleOnTouchMove(event) {
     if (!isMouseDown || !swiperRef.current) return;
-    const deltaX = (event.touches[0].clientX - startX) * 0.115;
+    const deltaX = (event.touches[0].clientX - startX) * touchSensitivity;
     swiperRef.current.scrollLeft = scrollLeft - deltaX;
   }
 
@@ -110,100 +114,3 @@ function Swiper({ children }) {
 }
 
 export default Swiper;
-//
-//
-//
-//
-///
-//
-//
-//
-///
-///
-///
-///
-//
-///
-///
-//////
-///
-///
-///
-////
-////
-///////////
-///
-///
-////
-///
-///
-////////
-////
-///////
-////////
-//////////
-//////////
-///////////
-///////////
-///
-// import React, { useState, useRef } from "react";
-// import "./swiper.css";
-
-// function Swiper({ children }) {
-//   const [startX, setStartX] = useState(0);
-//   const [isMouseDown, setIsMouseDown] = useState(false);
-//   const [scrollLeft, setScrollLeft] = useState(0);
-
-//   const swiperRef = useRef(null);
-
-//   function handleOnMouseDown(event) {
-//     setStartX(event.clientX);
-//     setIsMouseDown(true);
-//   }
-
-//   function handleOnMouseMove(event) {
-//     if (!isMouseDown || !swiperRef.current) return;
-//     event.preventDefault();
-//     const deltaX = (event.clientX - startX) * 0.115;
-//     swiperRef.current.scrollLeft = scrollLeft - deltaX;
-//   }
-
-//   function handleOnMouseUp() {
-//     setIsMouseDown(false);
-//   }
-
-//   function handleOnScroll() {
-//     setScrollLeft(swiperRef.current.scrollLeft);
-//   }
-
-//   return (
-//     <div>
-//       <div
-//         onMouseDown={(event) => {
-//           handleOnMouseDown(event);
-//         }}
-//         onMouseMove={(event) => {
-//           handleOnMouseMove(event);
-//         }}
-//         onMouseUp={() => {
-//           handleOnMouseUp();
-//         }}
-//         onScroll={() => {
-//           handleOnScroll();
-//         }}
-//         ref={swiperRef}
-//         className="swiperRootContainer"
-//       >
-//         <div className="swiperItemsContainer">
-//           {React.Children.map(children, (child, index) => (
-//             <div key={index} className="swiperItem">
-//               {child}
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Swiper;
